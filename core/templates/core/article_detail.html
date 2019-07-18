@@ -7,5 +7,8 @@
 
   <div style="margin-top: 100px">
     <a href="{% url 'core:article_list' %}">게시판이동</a>
+    <a href="{% url 'core:article_update' article.pk %}">수정하기</a>
+    <a href="{% url 'core:article_delete' article.pk %}">삭젵하기</a>
   </div>
+
 {% endblock %}

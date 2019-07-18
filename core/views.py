@@ -34,6 +34,27 @@ def article_create(request):
     elif request.method == 'GET':
         return render(request, 'core/article_create.html')
 
+
+def article_update(request, pk):
+    if request.method == 'POST':
+        article = get_object_or_404(Article, pk=pk)
+        #Article.objects.get(pk=pk)
+        article.title = request.POST['title']
+        article.contents = request.POST['contents']
+        article.author = request.POST['author']
+        article.save()
+        return redirect(reverse('core:article_detail',
+                                kwargs={'pk':article.pk}))
+    elif request.method =='GET':
+        return render(request, 'core/article_create.html')
+
+
+def article_delete(request, pk):
+    article = get_object_or_404(Article, pk=pk)
+    article.delete()
+    return redirect(reverse('core:article_list'))
+
+
 #elif 부분의 get
 def article_create_page(request):
     return render(request, 'core/article_create.html')
