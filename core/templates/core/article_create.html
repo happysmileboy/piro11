@@ -3,13 +3,15 @@
   <form method="post">
     {% csrf_token %}
     <label>제목</label>
-    <input name="title"><br/>
+  <!-- 수정시 input에 미리 넣어두기 -->
+    <input name="title" {% if article %}value={{ article.title}}{% endif %}><br/>
     <label>내용</label>
     <input name="contents"><br/>
     <label>저자</label>
     <input name="author"><br/>
     <button type="submit">제출</button>
   </form>
+
 {% endblock %}
 
 

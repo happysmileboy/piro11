@@ -38,15 +38,17 @@ def article_create(request):
 def article_update(request, pk):
     if request.method == 'POST':
         article = get_object_or_404(Article, pk=pk)
-        #Article.objects.get(pk=pk)
         article.title = request.POST['title']
         article.contents = request.POST['contents']
         article.author = request.POST['author']
+
         article.save()
         return redirect(reverse('core:article_detail',
-                                kwargs={'pk':article.pk}))
+                                kwargs={'pk': article.pk}))
     elif request.method =='GET':
-        return render(request, 'core/article_create.html')
+        article = get_object_or_404(Article, pk=pk)
+
+        return render(request, 'core/article_create.html',{"article":article})
 
 
 def article_delete(request, pk):
