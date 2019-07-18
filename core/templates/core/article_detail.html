@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
   <h4>{{ article.title }}</h4>
+{# https://docs.djangoproject.com/en/2.2/ref/templates/builtins/#date #}
+  <p style="text-align: right">작성일:{{ article.created_at | date:"Y년 n월 t" }}</p>
   <hr>
   <p style="text-align: right">{{ article.author }}</p>
   <p>{{ article.contents }}</p>
